@@ -7,6 +7,6 @@ for i in range(2,21,2):
 
 print("using while loop")
 
-while i <= 20:
-    print(i)
-    i += 2
+while j <= 20:
+    print(j)
+    j += 2
