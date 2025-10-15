@@ -24,8 +24,26 @@ Write the line of code to print only the model of my_first_car
 """
 
 class Car:
-    def __init__(self,color,model):
+    def __init__(self,color,model,mileage=0):
         self.color = color
         self.model = model
+        self.mileage = mileage
+    
+    """
+    Your Task: The Method Test
+
+Take the updated Car class definition (with the new mileage attribute and the drive method).
+
+Create a Car object named my_truck (color: "gray", model: "F150").
+
+Write the line of code to call the drive method, passing a distance of 100.
+
+Write the line of code to print the final mileage of my_truck.
+    """
+    def drive(self,distance):
+        self.mileage += distance
+    journey = drive(100)
+
 my_first_car = Car("green","honda")
 print(my_first_car.model)
+print(Car.mileage)
