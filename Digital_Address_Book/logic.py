@@ -1,5 +1,4 @@
 import json
-import os
 
 try:
     with open("contacts.json","r") as f:
@@ -8,9 +7,9 @@ except FileNotFoundError:
     contacts = []
 
 def add_contact():
-    name = input("Enter your name: ")
-    phone = input("Enter your phone number: ")
-    email = input("Enter you email address: ")
+    name = input("Enter your name: \n")
+    phone = input("Enter your phone number: \n")
+    email = input("Enter you email address: \n")
     contact = {"name": name,"phone": phone,"email": email}
     contacts.append(contact)
     print("contact is added.")
@@ -19,9 +18,11 @@ def view_contacts():
     if not contacts:
         print("There is not such contact")
     else:
-        for c in contacts:
-            print(f"Name: {c['name']},Phone: {c['phone']}, Email: {c['email']}")
-
+        for index, c in enumerate(contacts):
+            print(f"{index + 1}. Name: {c['name']}")
+            print(f"   Phone: {c['phone']}, Email: {c['email']}")
+            print("---")
+            
 def search_contact():
     term = input("Enter the name you want to search").lower()
 
@@ -37,6 +38,7 @@ def save_and_exit():
     with open("contacts.json","w") as f:
         json.dump(contacts,f, indent = 4)
     print("Contacts saved. Good Bye!")
+
 while True:
     print("1. Add Contact")
     print("2. View all contacts")
