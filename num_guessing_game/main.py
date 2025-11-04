@@ -24,7 +24,7 @@ def game_Guess():
 
 while True:
     print("Do you want to play again ? (yes/no)")
-    play_again = input().lower()
+    play_again = input().strip.lower()
     if play_again == "yes":
         game_Guess()
     else:
