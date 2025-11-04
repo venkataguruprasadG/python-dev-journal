@@ -28,4 +28,5 @@ while True:
     if play_again == "yes":
         game_Guess()
     else:
+        print("Thanks for playing..!")
         break
