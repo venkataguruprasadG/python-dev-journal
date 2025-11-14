@@ -5,35 +5,43 @@ player2_name = input("Enter your name: ")
 def input_player(player_name, played_numbers):
     while True:
         try:
-            raw_input = input(f"{player_name}, enter upto three digits.")
+            raw_input = input(
+                f"{player_name}, enter up to three digits (e.g. 123): "
+            ).strip()
 
             if not raw_input.isdigit():
-                print("Enter only digits without spaces.")
+                print("❌ Enter only digits without spaces. Example: 123")
                 continue
 
             if len(raw_input) == 0 or len(raw_input) > 3:
-                print(f"Invalid you have entered the wrong numbers.")
+                print("❌ You must enter between 1 and 3 digits.")
                 continue
 
             numbers = [int(ch) for ch in raw_input]
 
+            # Rule 1: Must be consecutive
             if any(numbers[i] != numbers[i - 1] + 1 for i in range(1, len(numbers))):
-                print("First the numbers must be consectuvie. Try again.")
+                print("❌ Digits must be consecutive. Try again.")
                 continue
 
+            # Rule 2: Must start from last played number + 1
+            if played_numbers:
+                expected_start = played_numbers[-1] + 1
+                if numbers[0] != expected_start:
+                    print(f"❌ You must start from {expected_start}. Try again.")
+                    continue
+
+            # Rule 3: No duplicates
             if any(num in played_numbers for num in numbers):
-                print(f"One or more numbers have been played. {player_name} try again.")
+                print(
+                    f"❌ One or more digits have already been played. {player_name}, try again."
+                )
                 continue
-            """for num in numbers:
-                if num in played_numbers:
-                    print(
-                        f"This number {num} is already played. player {player_name} enter valid numbers again."
-                    )
-                    break
-            else:"""
+
             return numbers
+
         except ValueError:
-            print("Enter only integers")
+            print("❌ Something went wrong. Try again.")
 
 
 played_numbers = []
