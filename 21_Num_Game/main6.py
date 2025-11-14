@@ -9,6 +9,10 @@ def input_player(player_name, played_numbers):
                 f"{player_name}, enter up to three digits (e.g. 123): "
             ).strip()
 
+            choice = input("if you want to quit the game. press (y/n).")
+            if choice.lower() == "y":
+                return None
+
             if not raw_input.isdigit():
                 print("❌ Enter only digits without spaces. Example: 123")
                 continue
@@ -50,6 +54,12 @@ turn = 0  # 0 for player 1 and 1 for player 2
 while True:
     current_player = player1_name if turn == 0 else player2_name
     player_input = input_player(current_player, played_numbers)
+
+    if player_input is None:
+        print(f"{current_player} quit the game.")
+        winner = player2_name if turn == 0 else player1_name
+        print(f"{winner} wins the game by default.")
+        break
 
     if 21 in player_input:
         print(f"{current_player} you lose the game. ")
